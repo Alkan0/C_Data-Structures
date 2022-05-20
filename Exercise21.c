@@ -4,19 +4,19 @@
 #include <stdlib.h>
 
 
-struct Node //Domh komvou.
+struct Node 
 {
     int data;
     struct Node* next;
 };
-void initList(struct Node **head)//Sunarthsh pou arxikopoiei thn lista mou.
+
+void initList(struct Node **head) 
 {
     *head=NULL;
 }
 
 
-int isEmpty(struct Node *head) //Sunarthsh pou tsekarei an h lista mou einai adeia kai epistrefei endeiktikh timh.
-{
+int isEmpty(struct Node *head){
     if(head==NULL)
         return 1;
     else
@@ -24,44 +24,44 @@ int isEmpty(struct Node *head) //Sunarthsh pou tsekarei an h lista mou einai ade
 }
 
 
-int listData(struct Node *p) //Sunarthsh pou mou gurnaei ton arithmo tou komvou pou dexetai ws parametro.
+int listData(struct Node *p) 
 {
     return p->data;
 }
 
 
-void addNode(struct Node** head_ref, int new_data) //Sunarthsh pou prosthetei neo komvo sthn lista mou diatirontas ths fthinousa katataksh.
+void addNode(struct Node** head_ref, int new_data) 
 {
     struct Node* current;
-    struct Node* new_node=(struct Node*)malloc(sizeof(struct Node)); //Desmefsh mnhmhs.
-    new_node->data = new_data; //Anathesh timhs.
-    if (*head_ref == NULL || (*head_ref)->data <= new_node->data)//An to head deixnei se null h to data ston komvo pou deixnei to head einai mikrotero h iso me thn timh tou kainouriou mou komvou.
+    struct Node* new_node=(struct Node*)malloc(sizeof(struct Node)); 
+    new_node->data = new_data; 
+    if (*head_ref == NULL || (*head_ref)->data <= new_node->data)
     {
-        new_node->next = *head_ref; //O kainourios komvos deixnei ston head.
-        *head_ref = new_node; //Head einai isos me ton neo komvo.
+        new_node->next = *head_ref; 
+        *head_ref = new_node; 
     }
     else
     {
-        current = *head_ref; //Kanw iso ton voithitiko komvo me to head.
-        while (current->next != NULL && current->next->data > new_node->data)//Oso uparxei epomenos komvos kai h timh tou epomenou komvou einai megaluterh apo afth tou neou komvou.
+        current = *head_ref; 
+        while (current->next != NULL && current->next->data > new_node->data)/
         {
-            current = current->next; //Sunexizw thn diasxish ths listas mou.
+            current = current->next; 
         }
-        new_node->next = current->next; //o neos komvos deixnei ston epomeno tou head.
-        current->next = new_node; //O epomenos tou head einai o neos komvos.
+        new_node->next = current->next; 
+        current->next = new_node; 
     }
 }
 
 
-void toString(struct Node *head) //Sunarthsh pou ektipwnei thn lista mou
+void toString(struct Node *head) 
 {
-    struct Node *curr;//Voithitikos komvos.
-    curr=head; //Isos me ton head
-    while(curr!=NULL)//Oso uparxei epomenos komvos.
+    struct Node *curr;
+    curr=head; 
+    while(curr!=NULL)
     {
-        printf("%d ",curr->data);//Printarw thn timh
-        if(curr->next==NULL)//An den uparxei epomenos komvos
-            break; //Stamataw(wste na mhn tupwthei sto telos mono tou komma(,))
+        printf("%d ",curr->data);
+        if(curr->next==NULL)
+            break; 
         printf(",");
         curr=curr->next;
     }
@@ -69,44 +69,44 @@ void toString(struct Node *head) //Sunarthsh pou ektipwnei thn lista mou
 }
 
 
-void deleteList(struct Node **head)//Sunarthsh diagrafhs oloklhrhs ths listas pou dexetai ws parametro.
+void deleteList(struct Node **head)
 {
     if(isEmpty==1)
         return 0;
-    struct Node *ptr;//Voithitikos komvos.
-    while(*head!=NULL)//Oso uparxei epomenos komvos
+    struct Node *ptr;
+    while(*head!=NULL)
     {
-        ptr=*head;//ptr iso me head
-        *head=(*head)->next;//head isos me ton epomeno tou
-        free(ptr);//Apeleftherwsh ptr.
+        ptr=*head;
+        *head=(*head)->next;
+        free(ptr);
     }
 }
 
 
 void deleteElement(struct Node** head_ref, int x)
 {
-    struct Node *temp = *head_ref, *prev;//Voithitikos komvos kai prohgoumenos komvos.
-    if (temp != NULL && temp->data == x)//An o komvos temp exei timh ish me to x.
+    struct Node *temp = *head_ref, *prev;
+    if (temp != NULL && temp->data == x)
     {
-        *head_ref = temp->next; //Allagh tou head ston epomeno tou temp.
+        *head_ref = temp->next; 
         printf("\nList after deleting number %d :\n",x);
-        free(temp); //Apeleftherwsh paliou head.
+        free(temp); 
         return;
     }
-    while (temp != NULL && temp->data != x)//Oso uparxei epomenos komvos kai h timh tou komvou den einai to x.
+    while (temp != NULL && temp->data != x)
     {
-        prev = temp; //Prohgoumenos komvos isos me ton trexonta.
-        temp = temp->next;//Trexontas komvos isos me ton epomeno tou.
+        prev = temp; 
+        temp = temp->next;
     }
-    if (temp == NULL)//An den uparxei epomenos komvos stamataei.
+    if (temp == NULL)
         return;
-    prev->next = temp->next;//O epomenos tou prohgoumenou deixnei ston epomeno tou trexonta..
+    prev->next = temp->next;
     printf("\nList after deleting number %d :\n",x);
-    free(temp); // Apeleftherwsh xwrou.
+    free(temp); 
 }
 
 
-int containsList(int x) //Sunarthsh pou tsekarei an uparxei o arithmos pou dexetai ws parametro sthn lista mou.
+int containsList(int x) 
 {
     if(listData==x)
         return 1;
@@ -115,50 +115,50 @@ int containsList(int x) //Sunarthsh pou tsekarei an uparxei o arithmos pou dexet
 }
 
 
-void countList(struct Node *head)//Sunarthsh pou metraei tous komvous.
-{
-    if(isEmpty==1)//Elegxos an einai adeia h lista mou.
-        return 0;
-    int i=0;//counter
-    struct Node *curr;//Voithitikos komvos.
-    curr=head;//pou deixnei ston head.
-    while(curr!=NULL)//Oso uparxei epomenos komvos.
-    {
-        curr=curr->next;
-        i++;//Afksanw ton counter
-    }
-    printf("\nLIST HAS %d NODES..\n",i);//kai ton printarw.
-}
-
-
-void countElement(struct Node *head, int x)//Sunarthsh pou metraei poses fores uparxei enas akeraios sthn lista mou.
+void countList(struct Node *head)
 {
     if(isEmpty==1)
         return 0;
-    int i=0;//couner
+    int i=0;
     struct Node *curr;
     curr=head;
     while(curr!=NULL)
     {
-        if(curr->data==x)//Otan vrethei komvos me timh ish me to x.
-            i++;//Afksanetai o counter.
+        curr=curr->next;
+        i++;
+    }
+    printf("\nLIST HAS %d NODES..\n",i);
+}
+
+
+void countElement(struct Node *head, int x)
+{
+    if(isEmpty==1)
+        return 0;
+    int i=0;
+    struct Node *curr;
+    curr=head;
+    while(curr!=NULL)
+    {
+        if(curr->data==x)
+            i++;
         curr=curr->next;
     }
     printf("\nNUM %d PRESENTED %d TIMES IN LIST..\n",x,i);
 }
 
 
-int getElement(struct Node **head, int j) //Sunarthsh pou dexetai enan akeraio ws thesh kai epistrefei ta dedomena se afthn thn thesh.
+int getElement(struct Node **head, int j) 
 {
-    if(isEmpty(*head)==1) //Elegxos an einai adeia h lista mou.
+    if(isEmpty(*head)==1) 
         return 0;
-    int i=0;//counter.
+    int i=0;
     struct Node *curr;
     curr=*head;
-    while(curr!=NULL) //Oso exei epomeno komvo h lista mou.
+    while(curr!=NULL) 
     {
         i++;
-        if(i==j) //Otan ginei isos o counter me thn timh pou dothike sthn sunarthsh stamataei kai gurnaei thn timh sthn sugkekrimenh thesh.
+        if(i==j) 
             printf("\nPosition %d equals to value : %d \n",i,curr->data);
         curr=curr->next;
     }
@@ -166,7 +166,7 @@ int getElement(struct Node **head, int j) //Sunarthsh pou dexetai enan akeraio w
 }
 
 
-void firstLocationList(struct Node *head, int x)//Sunarthsh pou epistrefei thn prwth emfanish enos akeraiou sthn lista mou.
+void firstLocationList(struct Node *head, int x)
 {
     if(isEmpty==1)
         return 0;
@@ -176,7 +176,7 @@ void firstLocationList(struct Node *head, int x)//Sunarthsh pou epistrefei thn p
     while(curr!=NULL)
     {
         i++;
-        if(curr->data==x)//An ginei ish h timh kapoiou komvou me to x stamatane oi epanalhpseis.
+        if(curr->data==x)
             break;
         curr=curr->next;
     }
@@ -184,38 +184,38 @@ void firstLocationList(struct Node *head, int x)//Sunarthsh pou epistrefei thn p
 }
 
 
-void lastLocationList(struct Node *head, int x)//Sunarthsh pou epistrefei thn teleftaia thesh tou akeraiou pou dexetai.
+void lastLocationList(struct Node *head, int x)
 {
-    if(isEmpty==1)//Elegxos an einai adeia h lista.
+    if(isEmpty==1)
         return 0;
     int i=0,a=0;
-    struct Node *curr;//Voithitikos komvos isos me head.
+    struct Node *curr;
     curr=head;
-    while(curr!=NULL)//Diasxish..
+    while(curr!=NULL)
     {
         i++;
-        if(curr->data==x)//An ginei ish h timh tou komvou me to x pou dothike.
+        if(curr->data==x)
         {
-            a=i;//a=i opote tha kratithei sto a h teleftaia thesh pou emperiexetai o akeraios x
+            a=i;
         }
-        curr=curr->next;//Sunexeia diasxishs.
+        curr=curr->next;
     }
     printf("\nLAST LOCATION OF NUM %d IS AT %d LOCATION..\n",x,a);
 }
 
 
-void removeDuplicates(struct Node *head)//Sunarthsh pou diwxnei ta diplotupa
+void removeDuplicates(struct Node *head)
 {
-    struct Node * current = head; //Voithitikos komvos.
+    struct Node * current = head; 
 
-    struct Node * next_next;//Komvos gia na krataei afton pou prepei na diagrafei.
+    struct Node * next_next;
 
-    if (isEmpty(head)==1) //Elegxos an einai adeia h lista mou.
+    if (isEmpty(head)==1) 
         return;
 
-    while (current->next != NULL)//Diasxish listas.
+    while (current->next != NULL)
     {
-        if (current->data == current->next->data)//Sugrkish komvou me ton epomeno tou.
+        if (current->data == current->next->data)
         {
             next_next = current->next->next;
             free(current->next);
@@ -223,7 +223,7 @@ void removeDuplicates(struct Node *head)//Sunarthsh pou diwxnei ta diplotupa
         }
         else
         {
-            current = current->next;//Sunexizei mono an den uparksei diagrafh.
+            current = current->next;
         }
     }
     printf("\nAfter removing Duplicates my list is : \n");
@@ -234,7 +234,7 @@ void removeDuplicates(struct Node *head)//Sunarthsh pou diwxnei ta diplotupa
 int main()
 {
     struct Node* head;
-    initList(&head);//Arxikopoihsh listas kai klhsh methodwn pou zhtithikan.
+    initList(&head);
     addNode(&head,10);
     addNode(&head,3);
     addNode(&head,5);
